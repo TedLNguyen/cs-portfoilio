@@ -1,0 +1,55 @@
+//Ted Nguyen and Ryan Chau
+
+//play the sound at the start when you are at the home screen
+playSound("Sound2.mp3", true);
+
+//when the user clicks on the drop dates button 
+onEvent("dropDatesButton", "click", function( ) {
+  setScreen("dropDatesScreen");
+  stopSound("Sound2.mp3");
+  playSound("sound://category_loops/vibrant_game_musical_harping_movement_loop_1_accents.mp3", true);
+  onEvent("homeButton1", "click", function( ) {
+    setScreen("homeScreen");
+    stopSound("sound://category_loops/vibrant_game_musical_harping_movement_loop_1_accents.mp3");
+    playSound("Sound2.mp3", true); 
+  });
+});
+
+//when the user clicks on the general support button 
+onEvent("generalSupportButton", "click", function( ) {
+  setScreen("generalSupportScreen");
+  stopSound("Sound2.mp3");
+  playSound("sound://category_loops/vibrant_game_musical_the_end_approaching_loop_1.mp3", true);
+  onEvent("homeButton2", "click", function( ) {
+    setScreen("homeScreen");
+    stopSound("sound://category_loops/vibrant_game_musical_the_end_approaching_loop_1.mp3");
+    playSound("Sound2.mp3", true);
+  });
+});
+
+//when the user clicks on the urgent release updates button 
+onEvent("urgentReleasesButton", "click", function( ) {
+  setScreen("urgentReleasesScreen");
+  stopSound("Sound2.mp3");
+  playSound("sound://category_alerts/airy_bell_notification.mp3");
+  onEvent("homeButton3", "click", function( ) {
+    setScreen("homeScreen");
+    playSound("Sound2.mp3", true);
+  });
+});
+
+//for the image in the home screen
+//https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2Fsolacenotify&psig=AOvVaw2e8bgesW7CebNAfhK5pHj8&ust=1635966266242000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCOjStrOv-vMCFQAAAAAdAAAAABAD
+
+//for the PS5 image
+//https://www.google.com/url?sa=i&url=https%3A%2F%2Fspecsfinder.info%2Fcategory%2Fvideo-gaming%2Fplaystation-5%2F&psig=AOvVaw1OExWlsOjjfWBUE00xNFn-&ust=1635966329836000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCKDbzNev-vMCFQAAAAAdAAAAABAJ
+
+//for the Air Jordan 1 Image
+//https://www.google.com/url?sa=i&url=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-dark-mocha&psig=AOvVaw0eWRqVMNV6sZH4R4ZE_R95&ust=1635966384319000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCKDW3O6v-vMCFQAAAAAdAAAAABAD
+
+//for the 3070 image
+//https://www.google.com/imgres?imgurl=https%3A%2F%2Fpisces.bbystatic.com%2Fimage2%2FBestBuy_US%2Fimages%2Fproducts%2F6429%2F6429442_sd.jpg&imgrefurl=https%3A%2F%2Fwww.bestbuy.com%2Fsite%2Fnvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black%2F6429442.p%3FskuId%3D6429442&tbnid=cNz03N7RvL3nbM&vet=12ahUKEwjL7cmBsPrzAhV3AzQIHaU1CoIQMygAegUIARCuAQ..i&docid=IcUCfHht9Sqv_M&w=4879&h=2420&q=3070%20founders%20edition&safe=active&ved=2ahUKEwjL7cmBsPrzAhV3AzQIHaU1CoIQMygAegUIARCuAQ
+
+//for the Patta image
+//https://www.google.com/imgres?imgurl=https%3A%2F%2Fsneakernews.com%2Fwp-content%2Fuploads%2F2021%2F10%2FPatta-Nike-Air-Max-1-Blue-DH1348-004-8-1.jpg&imgrefurl=https%3A%2F%2Fsneakernews.com%2F2021%2F10%2F19%2Fpatta-nike-air-max-1-noise-aqua-dh1348-004%2F&tbnid=aph-MVoKKRZmtM&vet=12ahUKEwj66tGNsPrzAhW1GzQIHWtCDHYQMygAegUIARDIAQ..i&docid=Ncg3z9G5SvCYTM&w=1140&h=799&q=patta%20air%20max%201&safe=active&ved=2ahUKEwj66tGNsPrzAhW1GzQIHWtCDHYQMygAegUIARDIAQ
+
