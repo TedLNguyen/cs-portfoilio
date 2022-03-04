@@ -1,0 +1,65 @@
+//Sets the id column to variable id
+var id = getColumn("Best Selling Video Games", "id");
+//Sets the title column to variable title
+var title = getColumn("Best Selling Video Games", "Title");
+//Sets the publisher column to variable publisher
+var publisher = getColumn("Best Selling Video Games", "Publisher");
+
+//when the button is clicked on the IntroPage, the function buttonPress is called
+onEvent("introButton", "click", function( ) {
+  buttonPress();
+});
+
+//when the category1 button is clicked, set screen to Top10Games
+onEvent("category1", "click", function( ) {
+  playSound("sound://category_retro/retro_game_ui_select_4.mp3", false);
+  setScreen("Top10Games");
+  setProperty("top10Games", "text", "");
+  //traverses the title and id list
+  for (var i = 0; i < 10; i++){
+    setProperty("top10Games", "text", getText("top10Games") + id[i] + ". " + title[i] + "\n");
+}
+});
+
+//when the category2 button is clicked, set screen to Top10Nintendo
+onEvent("category2", "click", function( ) {
+  playSound("sound://category_retro/retro_game_ui_select_4.mp3", false);
+  setScreen("Top10Nintendo");
+  //creates a filtered list called games
+  var games = [];
+  setProperty("top10Nintendo", "text", "");
+  var count = 0;
+  for (var i = 0; i < publisher.length; i++){
+    //condition statement to only add title of game to filtered list if published by Nintendo
+    if (publisher[i] == "Nintendo" && count < 11){
+      appendItem(games, title[i]);
+      count = count + 1;
+  }
+}
+  //adds the elements of the filtered list to the screen
+  for (var j = 0; j < 10; j++){
+    setProperty("top10Nintendo", "text", getText("top10Nintendo") + id[j] + ". " + games[j] + "\n");
+}
+});
+
+//when the return button is clicked on the MainMenu screen, play a sound and switch the screen back to the IntroPage
+onEvent("returnButton1", "click", function( ) {
+  playSound("sound://category_retro/retro_game_ui_select_4.mp3", false);
+  setScreen("IntroPage");
+});
+
+//when the return button is clicked on the Top10Games screen, the function buttonPress is called
+onEvent("returnButton2", "click", function( ) {
+  buttonPress();
+});
+
+//when the return button is clicked on the Top10Nintendo screen, the function buttonPress is called
+onEvent("returnButton3", "click", function( ) {
+  buttonPress();
+});
+
+//declaring function buttonPress to play a sound and set the screen to MainMenu
+function buttonPress(){
+  playSound("sound://category_retro/retro_game_ui_select_4.mp3", false);
+  setScreen("MainMenu");
+}
