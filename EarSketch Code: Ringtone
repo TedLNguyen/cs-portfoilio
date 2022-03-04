@@ -1,0 +1,30 @@
+#		python code
+#		script_name: Ringtone_Nguyen_Ted
+#
+#		author: Ted Nguyen
+#		description: A simple ringtone 
+#
+
+from earsketch import *
+init()
+setTempo(110)
+synth = Y56_SYNTHHARP_1
+ciara = CIARA_SET_BASSLINE_1
+beat1 = "0++"
+beat2 = "0+0+0+0+"
+beat3 = "0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+0+"
+beat4 = "000000000"
+
+makeBeat(synth, 1, 1, beat1+beat1+beat1+beat1+beat1+beat2+beat4)
+makeBeat(ciara, 2, 1.75, beat1+beat2+beat4)
+setEffect(2, VOLUME, GAIN, -60, 1, -5, 1.75)
+
+def myFunction(startMeasure, endMeasure):
+    fitMedia(synth, 1, startMeasure, endMeasure)
+myFunction(3, 31)
+
+for i in range(5, 31, 4):
+    makeBeat(ciara, 2, i, beat3)
+    setEffect(2, VOLUME, GAIN, -30, i, 0, i+2)
+
+finish()
