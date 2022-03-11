@@ -1,0 +1,26 @@
+// C++ code
+//
+#include <Servo.h> 
+Servo myServo;
+int servoPosition = 90;
+int leftButton = 2;
+int rightButton = 3;
+
+void setup(){ 
+  myServo.attach(5);
+  pinMode(leftButton, INPUT);
+  pinMode(rightButton, INPUT);
+  myServo.write(servoPosition);
+}
+
+void loop(){
+    if (digitalRead(leftButton) == HIGH){
+      	servoPosition = servoPosition + 10;
+        myServo.write(servoPosition);
+        delay(250);
+    } else if (digitalRead(rightButton) == HIGH){
+      	servoPosition = servoPosition - 10;
+        myServo.write(servoPosition);
+      	delay(250);
+    }
+}
