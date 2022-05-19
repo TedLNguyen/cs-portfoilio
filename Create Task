@@ -1,0 +1,43 @@
+//Dataset imported from Code.org, information and images from: https://thecatapi.com;
+//image in HomeScreen obtained from https://newevolutiondesigns.com/images/freebies/4k-cat-wallpaper-1.jpg
+
+//declaring filtered lists
+var filteredCatsList = [];
+var filteredImagesList = [];
+//getting datasets from data table Cats and declaring them as lists
+var min = getColumn("Cats", "Minimum Life Span");
+var cats = getColumn("Cats", "Name");
+var images = getColumn("Cats", "Image");
+// random variable is used to pick a random number between 0 and the length of the filtered list
+var random;
+
+//transitions to finding cat screen
+onEvent("screenChangeButton", "click", function( ) {
+  setScreen("FindingCatScreen");
+});
+
+//displays an image of a certain cat with their name type based off user input 
+//clears the filtered lists
+onEvent("findCatButton", "click", function( ) {
+  cat(getNumber("lifeSpanDropDown"));
+  filteredCatsList = [];
+  filteredImagesList = [];
+});
+
+//transitions back to the home screen
+onEvent("homeButton", "click", function( ) {
+  setScreen("HomeScreen");
+});
+
+//function that chooses what cat the user should get based off the year chosen by the user through the parameter
+function cat(year){
+  for (var i = 0; i < min.length; i++){
+    if (min[i] >= year){
+      appendItem(filteredCatsList,cats[i]);
+      appendItem(filteredImagesList,images[i]);
+    }
+  }
+  random = randomNumber(0, filteredCatsList.length-1);
+  setProperty("catImageOutput", "image", filteredImagesList[random]);
+  setProperty("catOutput", "text", filteredCatsList[random]);
+}
