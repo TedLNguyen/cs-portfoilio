@@ -1,0 +1,80 @@
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*    Module:       main.cpp                                                  */
+/*    Author:       VEX                                                       */
+/*    Created:      Tue Mar 16 2021                                           */
+/*    Description:  Arm Manual Movement                                       */
+/*                                                                            */
+/*    This example will continuously display the current                      */
+/*    position of the arm on the V5 Brain's screen and allow you              */
+/*    to manually move the arm around                                         */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// RoboticArm1          RoboticArm    1, 2, 3, 4, 1, 2, 3, 4
+// EStop                bumper        E               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+
+#include "vex.h"
+
+using namespace vex;
+
+// function to run when the emergency stop button is pressed
+void onEStopPressed() {
+  RoboticArm1.emergencyStop();
+}
+
+int main() {
+  // Initializing Robot Configuration. DO NOT REMOVE!
+  vexcodeInit();
+
+    // register emergency stop event handler
+  EStop.pressed(onEStopPressed);
+
+  // short wait to make sure the emergency stop event is fully registered
+  wait(15, msec);
+
+  RoboticArm1.setMasteringValues(1761, 2089, 1925, 410);
+  RoboticArm1.setToolTipOffset(0.0, 0.0, 0.0);
+  RoboticArm1.moveToPositionLinear(5,-4,1.7);
+  RoboticArm1.moveToPositionLinear(6,-3,1.8);
+  RoboticArm1.moveToPositionLinear(5,-2,1.7);
+  RoboticArm1.moveToPositionLinear(5.289,-1.5,4);
+  RoboticArm1.moveToPositionLinear(5.289,-1.5,1.493);
+  RoboticArm1.moveToPositionLinear(5.510,-0.748,1.493);
+  RoboticArm1.moveToPositionLinear(5.289,-1.714,1.493);
+  RoboticArm1.moveToPositionLinear(6,-1.522,1.489);
+  RoboticArm1.moveToPositionLinear(5.548,-0.545,1.489);
+  RoboticArm1.moveToPositionLinear(6,-2,1.489);
+  RoboticArm1.moveToPositionLinear(7,-1.579,1.34);
+  RoboticArm1.moveToPositionLinear(6.324,-0.538,1.34);
+  RoboticArm1.moveToPositionLinear(5.469,0.238,4);
+  RoboticArm1.moveToPositionLinear(5.469,0.238,1.655);
+  RoboticArm1.moveToPositionLinear(6.060,1.268,1.401);
+  RoboticArm1.moveToPositionLinear(5,1,4);
+  RoboticArm1.moveToPositionLinear(5.393,1,1.65);
+  RoboticArm1.moveToPositionLinear(6.324,0,1.315);
+  RoboticArm1.enableManualMovement();
+
+  // display the position on the screen constantly
+  Brain.Screen.setFont(mono60);
+  
+  while (true) {
+    Brain.Screen.clearScreen();
+
+    // Display the X position on row 1
+    Brain.Screen.setCursor(1, 1);
+    Brain.Screen.print("Arm X: %0.3f", RoboticArm1.getAxisPosition(xaxis));
+    // Display the Y position on row 2
+    Brain.Screen.newLine();
+    Brain.Screen.print("Arm Y: %0.3f", RoboticArm1.getAxisPosition(yaxis));
+    // Display the Z position on row 3
+    Brain.Screen.newLine();
+    Brain.Screen.print("Arm Z: %0.3f", RoboticArm1.getAxisPosition(zaxis));
+
+    wait(0.2, seconds);
+  }
+}
